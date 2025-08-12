@@ -16,6 +16,8 @@ public class User2DaoTest {
     @Test
     public void getById() throws Exception {
         User user = userDao2.getById(280);
+
+        System.out.println("test");
         System.out.println("user = " + user);
     }
 }
