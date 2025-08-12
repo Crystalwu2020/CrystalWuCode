@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!--驼峰标识: 数据库中a_b 自动映射到 实体类中aB-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <!--别名-->
+        <package name="com.atguigu.pojo"/>
+    </typeAliases>
+
+    <!--加载映射文件-->
+    <mappers>
+        <mapper resource="mappers/UserDao.xml"></mapper>
+    </mappers>
+
+
+</configuration>

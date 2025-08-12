@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <context:component-scan base-package="com.atguigu"></context:component-scan>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--关联数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--加载mybatis核心配置文件-->
+        <property name="configuration" ref="configuration"></property>
+
+        <!--设置别名-->
+        <property name="typeAliasesPackage" value="com.atguigu.pojo"></property>
+
+        <!--加载mapper映射文件-->
+        <property name="mapperLocations" value="mappers/*Dao.xml"></property>
+
+    </bean>
+
+    <bean id="configuration" class="org.apache.ibatis.session.Configuration">
+        <!--驼峰标识-->
+        <property name="mapUnderscoreToCamelCase" value="true"></property>
+    </bean>
+
+    <context:property-placeholder location="jdbc.properties"></context:property-placeholder>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${driverClass}"></property>
+        <property name="url" value="${jdbcUrl}"></property>
+        <property name="username" value="${user}"></property>
+        <property name="password" value="${password}"></property>
+    </bean>
+
+</beans>
